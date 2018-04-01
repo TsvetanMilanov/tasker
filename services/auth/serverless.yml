@@ -1,0 +1,19 @@
+service: ${self:provider.stage}-auth-${self:custom.common.apiVersion}
+
+custom:
+  common: ${file(../../infra/scripts/sls-common.js)}
+
+provider:
+  name: aws
+  stage: ${opt:stage, "dev"}
+  runtime: go1.x
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  auth:
+    handler: bin/auth
