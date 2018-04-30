@@ -29,7 +29,7 @@ func (c *Config) GetAuth0ManagementConfig() ctypes.Auth0MgmtConfig {
 	}
 
 	return ctypes.Auth0MgmtConfig{
-		Auth0Config: auth0Cfg,
-		MgmtAPIAudience: os.Getenv("AUTH0_MGMT_API_AUDIENCE")
+		Auth0Config:     auth0Cfg,
+		MgmtAPIAudience: os.Getenv("AUTH0_MGMT_API_AUDIENCE"),
 	}
 }
