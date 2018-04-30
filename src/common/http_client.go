@@ -10,6 +10,10 @@ import (
 	"github.com/TsvetanMilanov/tasker/src/common/cconstants"
 )
 
+var (
+	byteSliceKind = reflect.SliceOf(reflect.TypeOf(byte(1))).Kind()
+)
+
 // HTTPClient is client which helps with HTTP requests.
 type HTTPClient struct {
 }
@@ -19,7 +23,7 @@ func (c *HTTPClient) PostJSON(url string, body interface{}, headers map[string]s
 	var b []byte
 	var err error
 	// Marshal the body only if it is not []byte.
-	if reflect.TypeOf(body).Kind() != reflect.SliceOf(reflect.TypeOf(byte(1))).Kind() {
+	if reflect.TypeOf(body).Kind() != byteSliceKind {
 		b, err = json.Marshal(body)
 		if err != nil {
 			return err
@@ -35,6 +39,13 @@ func (c *HTTPClient) PostJSON(url string, body interface{}, headers map[string]s
 	resBodyBytes, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err
+	}
+
+	// Return []byte when the out is *[]byte.
+	outElem := reflect.ValueOf(out).Elem()
+	if outElem.Type().Kind() == byteSliceKind {
+		outElem.SetBytes(resBodyBytes)
+		return nil
 	}
 
 	return json.Unmarshal(resBodyBytes, out)
