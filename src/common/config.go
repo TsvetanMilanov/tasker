@@ -18,3 +18,13 @@ func (c *Config) GetAuth0Config() types.Auth0Config {
 		TokenURL:     os.Getenv("AUTH0_TOKEN_URL"),
 	}
 }
+
+// GetAuth0ManagementConfig returns the auth0 management config stored
+// in env vars.
+func (c *Config) GetAuth0ManagementConfig() types.Auth0Config {
+	return types.Auth0Config{
+		ClientID:     os.Getenv("AUTH0_MGMT_CLIENT_ID"),
+		ClientSecret: os.Getenv("AUTH0_MGMT_CLIENT_SECRET"),
+		TokenURL:     os.Getenv("AUTH0_TOKEN_URL"),
+	}
+}
