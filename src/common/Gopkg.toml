@@ -23,3 +23,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
+
+[[constraint]]
+  name = "github.com/TsvetanMilanov/go-simple-di"
+  version = "0.1.0"

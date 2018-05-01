@@ -5,7 +5,13 @@
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
   packages = ["workflow"]
-  revision = "6cdb07f5f0a565d6eb335c70b5f97c2879333bb0"
+  revision = "62b75784be4e17eb8815365503dff1fa0a05f66d"
+
+[[projects]]
+  name = "github.com/TsvetanMilanov/go-simple-di"
+  packages = ["di"]
+  revision = "8a2e064912c3f27703a801b749fdd0b119f10d02"
+  version = "v0.1.0"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -16,6 +22,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "edd63cddfccef63b0709dd7314817604640695484fe9240245cedbf2e8c7e7e4"
+  inputs-digest = "a46b50a0fd164cd7ce612d0644fedb8df719a493d64b429d3d628526ebfc1e5d"
   solver-name = "gps-cdcl"
   solver-version = 1
