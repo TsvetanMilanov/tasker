@@ -17,7 +17,7 @@ func getWorkflow(bootstrap workflow.Bootstrap) *workflow.APIGatewayProxyWorkflow
 }
 
 func main() {
-	bootstrap := common.CreateDIContainer(
+	bootstrap := common.CreateBootstrap(
 		&di.Dependency{Value: &types.CallbackHandler{}},
 	)
 	w := getWorkflow(bootstrap)

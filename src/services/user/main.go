@@ -17,19 +17,9 @@ func getWorkflow(bootstrap workflow.Bootstrap) *workflow.APIGatewayProxyWorkflow
 }
 
 func main() {
-	bootstrap := func() workflow.Injector {
-		c := di.NewContainer()
-		err := c.Register(
-			&di.Dependency{Value: &types.InfoHandler{}},
-			&di.Dependency{Value: &common.HTTPClient{}},
-			&di.Dependency{Value: &common.Config{}},
-		)
-		if err != nil {
-			panic(err)
-		}
-
-		return c
-	}
+	bootstrap := common.CreateBootstrap(
+		&di.Dependency{Value: &types.InfoHandler{}},
+	)
 
 	w := getWorkflow(bootstrap)
 	lambda.Start(w.GetLambdaHandler())
