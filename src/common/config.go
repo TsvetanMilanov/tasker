@@ -23,8 +23,15 @@ func (c *Config) GetAuth0Config() ctypes.Auth0Config {
 // GetAuth0ManagementConfig returns the auth0 management config stored
 // in env vars.
 func (c *Config) GetAuth0ManagementConfig() ctypes.Auth0MgmtConfig {
+	auth0Cfg := ctypes.Auth0Config{
+		ClientID:     os.Getenv("AUTH0_MGMT_CLIENT_ID"),
+		ClientSecret: os.Getenv("AUTH0_MGMT_CLIENT_SECRET"),
+		TokenURL:     os.Getenv("AUTH0_TOKEN_URL"),
+		UserInfoURL:  os.Getenv("AUTH0_USER_INFO_URL"),
+	}
+
 	return ctypes.Auth0MgmtConfig{
-		Auth0Config: c.GetAuth0Config(),
+		Auth0Config: auth0Cfg,
 		MgmtAPIURL:  os.Getenv("AUTH0_MGMT_API_URL"),
 	}
 }
