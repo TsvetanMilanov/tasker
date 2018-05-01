@@ -1,7 +1,8 @@
 SHELL               := /bin/bash
 BUILD_DIR           := .build
 STAGE               ?= dev
-SERVICES_DIR        := services
+ENV_FILE_NAME       := $(STAGE)-env.list
+SERVICES_DIR        := src/services
 DISCOVERED_SERVICES := $(shell ls $(SERVICES_DIR))
 
 GO_NAMESPACE        := github.com/TsvetanMilanov/tasker
@@ -35,6 +36,8 @@ endef
 	build/% \
 	deploy \
 	deploy/% \
+	vendor-update \
+	vendor-update/% \
 	clean
 
 .SECONDEXPANSION:
@@ -53,9 +56,10 @@ $(BUILD_DIR)/build-%: $$(call find_recursive,$(SERVICES_DIR)/%,*.go) $$(BUILD_DI
 		$(call get_service_go_package,$*)
 	@touch $@
 
-$(BUILD_DIR)/deploy-%: $(BUILD_DIR)/build-%
+.SECONDEXPANSION:
+$(BUILD_DIR)/deploy-%: $(BUILD_DIR)/build-% $$(call get_service_dir,%)/serverless.yml $(CURDIR)/infra/scripts/sls-common.js
 	$(call print,Deploying service $*...)
-	pushd $(call get_service_dir,$*) && \
+	source $(ENV_FILE_NAME); pushd $(call get_service_dir,$*) && \
 	serverless deploy --stage $(STAGE) && \
 	popd
 	@touch $@
@@ -71,6 +75,15 @@ deploy/%: $(BUILD_DIR)/deploy-%
 
 deploy: $(patsubst %,deploy/%,$(DISCOVERED_SERVICES))
 	$(call print,All services successfully deployed)
+
+vendor-update/%:
+	$(call print,Updating vendors for service $*...)
+	pushd $(call get_service_dir,$*) && \
+	dep ensure -update && \
+	popd
+
+vendor-update: $(patsubst %,vendor-update/%,$(DISCOVERED_SERVICES))
+	$(call print,All vendors successfully updated)
 
 clean:
 	rm -rf $(BUILD_DIR)/*

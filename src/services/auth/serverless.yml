@@ -1,7 +1,7 @@
 service: ${self:provider.stage}-auth-${self:custom.common.apiVersion}
 
 custom:
-  common: ${file(../../infra/scripts/sls-common.js)}
+  common: ${file(../../../infra/scripts/sls-common.js)}
 
 provider:
   name: aws
@@ -17,3 +17,8 @@ package:
 functions:
   auth:
     handler: bin/auth
+    environment: ${self:custom.common.env}
+    events:
+      - http:
+          method: GET
+          path: callback

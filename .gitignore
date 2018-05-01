@@ -19,3 +19,5 @@
 # Build dir
 .build
 
+# Env vars
+*-env.list

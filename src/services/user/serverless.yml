@@ -1,0 +1,24 @@
+service: ${self:provider.stage}-user-${self:custom.common.apiVersion}
+
+custom:
+  common: ${file(../../../infra/scripts/sls-common.js)}
+
+provider:
+  name: aws
+  stage: ${opt:stage, "dev"}
+  runtime: go1.x
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  user:
+    handler: bin/user
+    environment: ${self:custom.common.env}
+    events:
+      - http:
+          method: GET
+          path: info
