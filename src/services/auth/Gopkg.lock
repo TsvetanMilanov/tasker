@@ -8,14 +8,21 @@
   revision = "62b75784be4e17eb8815365503dff1fa0a05f66d"
 
 [[projects]]
+  name = "github.com/TsvetanMilanov/go-simple-di"
+  packages = ["di"]
+  revision = "8a2e064912c3f27703a801b749fdd0b119f10d02"
+  version = "v0.1.0"
+
+[[projects]]
   branch = "master"
   name = "github.com/TsvetanMilanov/tasker"
   packages = [
     "src/common",
     "src/common/cconstants",
+    "src/common/cdeclarations",
     "src/common/ctypes"
   ]
-  revision = "776868e4d97e0aae6c7eddf4cc2c9d2cfdc9caca"
+  revision = "e3474de753af1695716e9ddb86944a268582448e"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -31,6 +38,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "ad9cc7f74c64a97c7d4c438389b823d4bfa9df43ed28470e420beab7dc130251"
+  inputs-digest = "cbb985f00735d7213237ae85cbfe1670e168dc9c6182d5083034c8b53db0ee7e"
   solver-name = "gps-cdcl"
   solver-version = 1

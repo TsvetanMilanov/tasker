@@ -31,3 +31,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/TsvetanMilanov/tasker"
+
+[[constraint]]
+  name = "github.com/TsvetanMilanov/go-simple-di"
+  version = "0.1.0"
