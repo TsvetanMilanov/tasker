@@ -24,7 +24,7 @@ func (c *Config) GetAuth0Config() ctypes.Auth0Config {
 // in env vars.
 func (c *Config) GetAuth0ManagementConfig() ctypes.Auth0MgmtConfig {
 	return ctypes.Auth0MgmtConfig{
-		Auth0Config:     c.GetAuth0Config(),
-		MgmtAPIAudience: os.Getenv("AUTH0_MGMT_API_AUDIENCE"),
+		Auth0Config: c.GetAuth0Config(),
+		MgmtAPIURL:  os.Getenv("AUTH0_MGMT_API_URL"),
 	}
 }

@@ -3,6 +3,7 @@ package common
 import (
 	"bytes"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -69,6 +70,10 @@ func (c *HTTPClient) doRequest(url, method string, headers map[string]string, bo
 	resBodyBytes, err := ioutil.ReadAll(res.Body)
 	if err != nil {
 		return err
+	}
+
+	if res.StatusCode >= http.StatusBadRequest {
+		return errors.New(string(resBodyBytes))
 	}
 
 	// Return []byte when the out is *[]byte.
