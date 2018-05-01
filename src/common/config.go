@@ -6,7 +6,7 @@ import (
 	"github.com/TsvetanMilanov/tasker/src/common/ctypes"
 )
 
-// Config handles common server configurations.
+// Config implements IConfig.
 type Config struct {
 }
 

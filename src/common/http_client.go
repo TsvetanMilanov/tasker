@@ -19,7 +19,7 @@ var (
 	byteSliceKind = reflect.SliceOf(reflect.TypeOf(byte(1))).Kind()
 )
 
-// HTTPClient is client which helps with HTTP requests.
+// HTTPClient implements IHTTPClient.
 type HTTPClient struct {
 }
 
