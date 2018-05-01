@@ -5,6 +5,7 @@ type Auth0Config struct {
 	ClientID     string
 	ClientSecret string
 	TokenURL     string
+	UserInfoURL  string
 }
 
 // Auth0MgmtConfig The configuration of the auth0 management client.
