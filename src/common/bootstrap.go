@@ -22,3 +22,11 @@ func CreateDIContainer(deps ...*di.Dependency) workflow.Injector {
 
 	return c
 }
+
+// CreateBootstrap returns new bootstrap function with all
+// common dependencieas and the provided ones.
+func CreateBootstrap(deps ...*di.Dependency) workflow.Bootstrap {
+	return func() workflow.Injector {
+		return CreateDIContainer(deps...)
+	}
+}
