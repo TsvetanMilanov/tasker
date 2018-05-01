@@ -5,7 +5,13 @@
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
   packages = ["workflow"]
-  revision = "6cdb07f5f0a565d6eb335c70b5f97c2879333bb0"
+  revision = "62b75784be4e17eb8815365503dff1fa0a05f66d"
+
+[[projects]]
+  name = "github.com/TsvetanMilanov/go-simple-di"
+  packages = ["di"]
+  revision = "8a2e064912c3f27703a801b749fdd0b119f10d02"
+  version = "v0.1.0"
 
 [[projects]]
   branch = "master"
@@ -13,10 +19,11 @@
   packages = [
     "src/common",
     "src/common/cconstants",
+    "src/common/cdeclarations",
     "src/common/ctypes",
     "src/common/cutils"
   ]
-  revision = "6adf65acc35acfb75b417b23f6daea7c42e6d31c"
+  revision = "e3008ba7939592482912fa0f25f0eb362091683d"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -32,6 +39,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "6e7417a5d65e101980be0e0b32dc8ee3bd429ad9995134304438abc418900313"
+  inputs-digest = "5a14f9b1b95f5064df3417f7e7abb24809e2150c8a6c8d3b7d593f87ee415e09"
   solver-name = "gps-cdcl"
   solver-version = 1

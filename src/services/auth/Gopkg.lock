@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
   packages = ["workflow"]
-  revision = "6cdb07f5f0a565d6eb335c70b5f97c2879333bb0"
+  revision = "62b75784be4e17eb8815365503dff1fa0a05f66d"
 
 [[projects]]
   branch = "master"
@@ -15,7 +15,7 @@
     "src/common/cconstants",
     "src/common/ctypes"
   ]
-  revision = "6adf65acc35acfb75b417b23f6daea7c42e6d31c"
+  revision = "776868e4d97e0aae6c7eddf4cc2c9d2cfdc9caca"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"

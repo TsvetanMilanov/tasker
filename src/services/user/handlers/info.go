@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
-	"github.com/TsvetanMilanov/tasker/src/common"
 	"github.com/TsvetanMilanov/tasker/src/common/cutils"
+	"github.com/TsvetanMilanov/tasker/src/services/user/types"
 )
 
 type userInfoRequest struct {
@@ -48,15 +48,19 @@ type auth0MgmtUserInfoResponse struct {
 
 // InfoHandler handles user info request.
 func InfoHandler(ctx workflow.Context, req userInfoRequest) error {
-	config := &common.Config{}
-	httpClient := &common.HTTPClient{}
-	auth0MgmtCfg := config.GetAuth0ManagementConfig()
+	infoHandler := &types.InfoHandler{}
+	err := ctx.GetInjector().Resolve(infoHandler)
+	if err != nil {
+		return err
+	}
+
+	auth0MgmtCfg := infoHandler.Config.GetAuth0ManagementConfig()
 
 	headers := map[string]string{
 		"Authorization": req.Authorization,
 	}
 	userInfo := auth0UserInfoResponse{}
-	err := httpClient.GetJSON(auth0MgmtCfg.UserInfoURL, headers, &userInfo)
+	err = infoHandler.HTTPClient.GetJSON(auth0MgmtCfg.UserInfoURL, headers, &userInfo)
 	if err != nil {
 		cutils.SetInternalServerError(ctx, err)
 		return nil
@@ -70,7 +74,7 @@ func InfoHandler(ctx workflow.Context, req userInfoRequest) error {
 		Audience:     auth0MgmtCfg.MgmtAPIURL,
 	}
 	machineToMachineToken := auth0MgmtMachineToMachineTokenResponse{}
-	err = httpClient.PostJSON(auth0MgmtCfg.TokenURL, body, nil, &machineToMachineToken)
+	err = infoHandler.HTTPClient.PostJSON(auth0MgmtCfg.TokenURL, body, nil, &machineToMachineToken)
 	if err != nil {
 		cutils.SetInternalServerError(ctx, err)
 		return nil
@@ -82,7 +86,7 @@ func InfoHandler(ctx workflow.Context, req userInfoRequest) error {
 		"Authorization": fmt.Sprintf("Bearer %s", machineToMachineToken.AccessToken),
 	}
 
-	err = httpClient.GetJSON(mgmtUserInfoURL, headers, &mgmtUserInfo)
+	err = infoHandler.HTTPClient.GetJSON(mgmtUserInfoURL, headers, &mgmtUserInfo)
 	if err != nil {
 		cutils.SetInternalServerError(ctx, err)
 		return nil
