@@ -3,9 +3,12 @@ package common
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"net/http/httputil"
 	"reflect"
 
 	"github.com/TsvetanMilanov/tasker/src/common/cconstants"
@@ -55,10 +58,13 @@ func (c *HTTPClient) doRequest(url, method string, headers map[string]string, bo
 		req.Header.Add(k, v)
 	}
 
+	debug(httputil.DumpRequestOut(req, true))
 	res, err := http.DefaultClient.Do(req)
 	if err != nil {
 		return err
 	}
+
+	debug(httputil.DumpResponse(res, true))
 
 	resBodyBytes, err := ioutil.ReadAll(res.Body)
 	if err != nil {
@@ -73,4 +79,12 @@ func (c *HTTPClient) doRequest(url, method string, headers map[string]string, bo
 	}
 
 	return json.Unmarshal(resBodyBytes, out)
+}
+
+func debug(data []byte, err error) {
+	if err == nil {
+		fmt.Printf("%s\n\n", data)
+	} else {
+		log.Fatalf("%s\n\n", err)
+	}
 }
