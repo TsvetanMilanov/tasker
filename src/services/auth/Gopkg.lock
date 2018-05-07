@@ -10,7 +10,7 @@
 [[projects]]
   name = "github.com/TsvetanMilanov/go-simple-di"
   packages = ["di"]
-  revision = "8a2e064912c3f27703a801b749fdd0b119f10d02"
+  revision = "d958830d3aefff7b33f687a9e43bef36f3df1cf1"
   version = "v0.1.0"
 
 [[projects]]
@@ -22,7 +22,7 @@
     "src/common/cdeclarations",
     "src/common/ctypes"
   ]
-  revision = "61d588f41c5e585c88ee5cfd75b222800ef372f0"
+  revision = "bb268bef80bafe2c47be61d30aba487d4ffc6e66"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"

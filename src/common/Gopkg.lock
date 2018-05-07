@@ -10,7 +10,7 @@
 [[projects]]
   name = "github.com/TsvetanMilanov/go-simple-di"
   packages = ["di"]
-  revision = "8a2e064912c3f27703a801b749fdd0b119f10d02"
+  revision = "d958830d3aefff7b33f687a9e43bef36f3df1cf1"
   version = "v0.1.0"
 
 [[projects]]
