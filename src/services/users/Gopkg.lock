@@ -21,9 +21,11 @@
     "src/common/cconstants",
     "src/common/cdeclarations",
     "src/common/ctypes",
-    "src/common/cutils"
+    "src/common/cutils",
+    "src/services/user/handlers",
+    "src/services/user/types"
   ]
-  revision = "bb268bef80bafe2c47be61d30aba487d4ffc6e66"
+  revision = "1e3baacb7319e03a63022b5670e23db71b78fc9a"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -39,6 +41,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "5a14f9b1b95f5064df3417f7e7abb24809e2150c8a6c8d3b7d593f87ee415e09"
+  inputs-digest = "587b2cc81ed27358756be7e4046236203b193b4e6d61dc52fbe131c047dbd87b"
   solver-name = "gps-cdcl"
   solver-version = 1

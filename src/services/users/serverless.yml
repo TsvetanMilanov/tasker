@@ -1,4 +1,4 @@
-service: ${self:provider.stage}-user-${self:custom.common.apiVersion}
+service: ${self:provider.stage}-users-${self:custom.common.apiVersion}
 
 custom:
   common: ${file(../../../infra/scripts/sls-common.js)}
@@ -15,10 +15,10 @@ package:
    - ./bin/**
 
 functions:
-  user:
-    handler: bin/user
+  users:
+    handler: bin/users
     environment: ${self:custom.common.env}
     events:
       - http:
           method: GET
-          path: info
+          path: /me

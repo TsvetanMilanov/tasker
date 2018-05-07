@@ -36,6 +36,7 @@ endef
 	build/% \
 	deploy \
 	deploy/% \
+	remove/% \
 	vendor-update \
 	vendor-update/% \
 	clean
@@ -64,6 +65,13 @@ $(BUILD_DIR)/deploy-%: $(BUILD_DIR)/build-% $$(call get_service_dir,%)/serverles
 	popd
 	@touch $@
 
+$(BUILD_DIR)/remove-%:
+	$(call print,Removing service $*...)
+	source $(ENV_FILE_NAME); pushd $(call get_service_dir,$*) && \
+	serverless remove --stage $(STAGE) && \
+	popd
+	@touch $@
+
 build/%: $(BUILD_DIR)/build-%
 	$(call print,Service $* successfully built)
 
@@ -75,6 +83,9 @@ deploy/%: $(BUILD_DIR)/deploy-%
 
 deploy: $(patsubst %,deploy/%,$(DISCOVERED_SERVICES))
 	$(call print,All services successfully deployed)
+
+remove/%: $(BUILD_DIR)/remove-%
+	$(call print,Service $* successfully removed)
 
 vendor-update/%:
 	$(call print,Updating vendors for service $*...)
