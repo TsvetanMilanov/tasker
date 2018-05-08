@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
 	"github.com/TsvetanMilanov/go-simple-di/di"
-	"github.com/TsvetanMilanov/tasker/src/common"
+	"github.com/TsvetanMilanov/tasker-common/common"
 	"github.com/TsvetanMilanov/tasker/src/services/auth/handlers"
 	"github.com/TsvetanMilanov/tasker/src/services/auth/types"
 	"github.com/aws/aws-lambda-go/lambda"

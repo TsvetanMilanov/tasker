@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
   packages = ["workflow"]
-  revision = "62b75784be4e17eb8815365503dff1fa0a05f66d"
+  revision = "b8758ab861a03add400e2feb5177233e5cc86bfd"
 
 [[projects]]
   name = "github.com/TsvetanMilanov/go-simple-di"
@@ -15,14 +15,14 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/TsvetanMilanov/tasker"
+  name = "github.com/TsvetanMilanov/tasker-common"
   packages = [
-    "src/common",
-    "src/common/cconstants",
-    "src/common/cdeclarations",
-    "src/common/ctypes"
+    "common",
+    "common/cconstants",
+    "common/cdeclarations",
+    "common/ctypes"
   ]
-  revision = "1e3baacb7319e03a63022b5670e23db71b78fc9a"
+  revision = "6cbad2028e11a79563d9c958c2b525dbb127c6f6"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -38,6 +38,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "cbb985f00735d7213237ae85cbfe1670e168dc9c6182d5083034c8b53db0ee7e"
+  inputs-digest = "b12a3843b4a21da43d84f078423029ba1e6c75da4caa686fadbb822493d4ebf5"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -30,7 +30,7 @@
 
 [[constraint]]
   branch = "master"
-  name = "github.com/TsvetanMilanov/tasker"
+  name = "github.com/TsvetanMilanov/tasker-common"
 
 [[constraint]]
   name = "github.com/TsvetanMilanov/go-simple-di"

@@ -1,6 +1,6 @@
 package types
 
-import "github.com/TsvetanMilanov/tasker/src/common/cdeclarations"
+import "github.com/TsvetanMilanov/tasker-common/common/cdeclarations"
 
 // InfoHandler ...
 type InfoHandler struct {

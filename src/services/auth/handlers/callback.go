@@ -8,7 +8,7 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
-	"github.com/TsvetanMilanov/tasker/src/common"
+	"github.com/TsvetanMilanov/tasker-common/common"
 )
 
 const (

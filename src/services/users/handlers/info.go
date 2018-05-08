@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
-	"github.com/TsvetanMilanov/tasker/src/common/cutils"
-	"github.com/TsvetanMilanov/tasker/src/services/user/types"
+	"github.com/TsvetanMilanov/tasker-common/common/cutils"
+	"github.com/TsvetanMilanov/tasker/src/services/users/types"
 )
 
 type userInfoRequest struct {

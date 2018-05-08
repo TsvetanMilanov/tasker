@@ -1,7 +1,7 @@
 package types
 
 import (
-	"github.com/TsvetanMilanov/tasker/src/common/cdeclarations"
+	"github.com/TsvetanMilanov/tasker-common/common/cdeclarations"
 )
 
 // CallbackHandler ...
