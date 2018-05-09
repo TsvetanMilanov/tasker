@@ -93,13 +93,7 @@ vendor-update/%:
 	dep ensure -update && \
 	popd
 
-vendor-update-common:
-	$(call print,Updating vendors for src/common $*...)
-	pushd src/common && \
-	dep ensure -update && \
-	popd
-
-vendor-update: $(patsubst %,vendor-update/%,$(DISCOVERED_SERVICES)) vendor-update-common
+vendor-update: $(patsubst %,vendor-update/%,$(DISCOVERED_SERVICES))
 	$(call print,All vendors successfully updated)
 
 clean:
