@@ -36,6 +36,12 @@ functions:
           method: GET
           path: tasks/{taskId}
       - http:
+          method: POST
+          path: tasks
+      - http:
+          method: PUT
+          path: tasks
+      - http:
           method: GET
           path: tasks
 

@@ -1,9 +1,8 @@
 package types
 
-import "github.com/TsvetanMilanov/tasker-common/common/cdeclarations"
+import "github.com/TsvetanMilanov/tasker/src/services/tasks/declarations"
 
-// InfoHandler ...
-type InfoHandler struct {
-	HTTPClient cdeclarations.IHTTPClient `di:""`
-	Config     cdeclarations.IConfig     `di:""`
+// CreateHandler ...
+type CreateHandler struct {
+	DB declarations.IDB `di:""`
 }

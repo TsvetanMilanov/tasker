@@ -19,8 +19,8 @@
   packages = [
     "common",
     "common/cconstants",
-    "common/cdeclarations",
-    "common/ctypes"
+    "common/ctypes",
+    "common/cutils"
   ]
   revision = "6cbad2028e11a79563d9c958c2b525dbb127c6f6"
 
@@ -35,9 +35,15 @@
   revision = "fafa7e49388b8991caf99308e80655ba91816b72"
   version = "v1.1.0"
 
+[[projects]]
+  name = "github.com/google/uuid"
+  packages = ["."]
+  revision = "064e2069ce9c359c118179501254f67d7d37ba24"
+  version = "0.2"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "f6c763c5f45dafb68ae93c362a5d064bdb1dec46af861b427b254d8d2569a057"
+  inputs-digest = "0a8b79e6af54961215888f5e316e6c27000561bde010497e6233d4da6687217b"
   solver-name = "gps-cdcl"
   solver-version = 1

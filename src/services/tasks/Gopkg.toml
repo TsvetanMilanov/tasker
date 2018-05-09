@@ -35,3 +35,7 @@
 [[constraint]]
   name = "github.com/TsvetanMilanov/go-simple-di"
   version = "0.1.0"
+
+[[constraint]]
+  name = "github.com/google/uuid"
+  version = "0.2.0"
