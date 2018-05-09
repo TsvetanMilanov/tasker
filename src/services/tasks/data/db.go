@@ -8,7 +8,7 @@ type DB struct {
 
 // CreateTask saves the new task in the database and returns its ID.
 func (db *DB) CreateTask(name, user string) (taskID string, err error) {
-	guid, err := uuid.NewUUID()
+	guid, err := uuid.NewRandom()
 	if err != nil {
 		return taskID, err
 	}
