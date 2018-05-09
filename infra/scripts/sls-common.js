@@ -1,13 +1,12 @@
 "use strict";
 
-const ApiVersion = "v1";
-const TaskerEnvVarsPrefix = "TASKER_";
+const constants = require("./constants");
 
 const getEnvVars = () => {
     return Object.keys(process.env)
         .reduce((prev, curr) => {
-            if (curr.startsWith(TaskerEnvVarsPrefix)) {
-                prev[curr.replace(TaskerEnvVarsPrefix, "")] = process.env[curr];
+            if (curr.startsWith(constants.TaskerEnvVarsPrefix)) {
+                prev[curr.replace(constants.TaskerEnvVarsPrefix, "")] = process.env[curr];
             }
 
             return prev;
@@ -16,9 +15,8 @@ const getEnvVars = () => {
 
 module.exports = () => {
     const common = {
-        apiVersion: ApiVersion,
+        apiVersion: constants.ApiVersion,
         env: getEnvVars()
     };
-
     return common;
 };

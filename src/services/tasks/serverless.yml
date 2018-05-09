@@ -1,0 +1,59 @@
+service: ${self:provider.stage}-tasks-${self:custom.common.apiVersion}
+
+custom:
+  common: ${file(../../../infra/scripts/sls-common.js)}
+  config: ${file(../../../infra/scripts/tasks/sls-config.js)}
+
+provider:
+  name: aws
+  stage: ${opt:stage, "dev"}
+  runtime: go1.x
+  environment: ${self:custom.common.env}
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.config.tasksTableName}
+
+package:
+ exclude:
+   - ./**
+ include:
+   - ./bin/**
+
+functions:
+  tasks:
+    handler: bin/tasks
+    environment:
+      TASKS_TABLE_NAME: ${self:custom.config.tasksTableName}
+    events:
+      - http:
+          method: GET
+          path: tasks/{taskId}
+      - http:
+          method: GET
+          path: tasks
+
+resources:
+  Resources:
+    TasksDynamoDb:
+      Type: AWS::DynamoDB::Table
+      DeletionPolicy: Retain
+      Properties:
+        TableName: ${self:custom.config.tasksTableName}
+        AttributeDefinitions: # here we need only the primary key attributes
+          -
+            AttributeName: ID
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: ID
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
