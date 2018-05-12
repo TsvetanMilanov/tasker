@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
   packages = ["workflow"]
-  revision = "b8758ab861a03add400e2feb5177233e5cc86bfd"
+  revision = "9db175d4d541332fac14505b6784ee7eb52ae5cd"
 
 [[projects]]
   name = "github.com/TsvetanMilanov/go-simple-di"
@@ -22,7 +22,7 @@
     "common/cdeclarations",
     "common/ctypes"
   ]
-  revision = "6cbad2028e11a79563d9c958c2b525dbb127c6f6"
+  revision = "f6f68ba24006e8666a98ed648984583fc5581874"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -34,6 +34,27 @@
   ]
   revision = "4d30d0ff60440c2d0480a15747c96ee71c3c53d4"
   version = "v1.2.0"
+
+[[projects]]
+  name = "github.com/go-playground/locales"
+  packages = [
+    ".",
+    "currency"
+  ]
+  revision = "f63010822830b6fe52288ee52d5a1151088ce039"
+  version = "v0.12.1"
+
+[[projects]]
+  name = "github.com/go-playground/universal-translator"
+  packages = ["."]
+  revision = "b32fa301c9fe55953584134cb6853a13c87ec0a1"
+  version = "v0.16.0"
+
+[[projects]]
+  name = "github.com/go-playground/validator"
+  packages = ["."]
+  revision = "ffe836d7363bc7ab3f56d2fc90ce09bfb5a0c2c5"
+  version = "v9.17.0"
 
 [solve-meta]
   analyzer-name = "dep"

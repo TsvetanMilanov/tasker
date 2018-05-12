@@ -12,7 +12,7 @@ import (
 
 func getWorkflow(bootstrap workflow.Bootstrap) *workflow.APIGatewayProxyWorkflow {
 	return workflow.NewAPIGWProxyWorkflowBuilder().
-		AddPostHandler("/tasks", handlers.CreateHandler).
+		AddPostHandler("/tasks", handlers.CreateHandler).WithPreActions(common.ValidateRequest).
 		SetBootstrap(bootstrap).
 		Build()
 }

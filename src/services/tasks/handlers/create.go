@@ -9,8 +9,8 @@ import (
 )
 
 type createTaskReq struct {
-	Name  string          `json:"name"`
-	Tasks []createTaskReq `json:"tasks"`
+	Name  string          `json:"name" validate:"required"`
+	Tasks []createTaskReq `json:"tasks" validate:"dive,required"`
 }
 
 // CreateHandler handles task creation.
