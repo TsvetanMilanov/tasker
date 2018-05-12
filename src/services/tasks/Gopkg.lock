@@ -22,7 +22,7 @@
     "common/ctypes",
     "common/cutils"
   ]
-  revision = "f6f68ba24006e8666a98ed648984583fc5581874"
+  revision = "c44137d56016b21ec0c5bd5d6cfc0945d3f8d693"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -34,6 +34,48 @@
   ]
   revision = "4d30d0ff60440c2d0480a15747c96ee71c3c53d4"
   version = "v1.2.0"
+
+[[projects]]
+  name = "github.com/aws/aws-sdk-go"
+  packages = [
+    "aws",
+    "aws/awserr",
+    "aws/awsutil",
+    "aws/client",
+    "aws/client/metadata",
+    "aws/corehandlers",
+    "aws/credentials",
+    "aws/credentials/ec2rolecreds",
+    "aws/credentials/endpointcreds",
+    "aws/credentials/stscreds",
+    "aws/defaults",
+    "aws/ec2metadata",
+    "aws/endpoints",
+    "aws/request",
+    "aws/session",
+    "aws/signer/v4",
+    "internal/sdkio",
+    "internal/sdkrand",
+    "internal/shareddefaults",
+    "private/protocol",
+    "private/protocol/json/jsonutil",
+    "private/protocol/jsonrpc",
+    "private/protocol/query",
+    "private/protocol/query/queryutil",
+    "private/protocol/rest",
+    "private/protocol/xml/xmlutil",
+    "service/dynamodb",
+    "service/dynamodb/dynamodbattribute",
+    "service/sts"
+  ]
+  revision = "31a85efbe3bc741eb539d6310c8e66030b7c5cb7"
+  version = "v1.13.47"
+
+[[projects]]
+  name = "github.com/go-ini/ini"
+  packages = ["."]
+  revision = "6529cf7c58879c08d927016dde4477f18a0634cb"
+  version = "v1.36.0"
 
 [[projects]]
   name = "github.com/go-playground/locales"
@@ -62,9 +104,14 @@
   revision = "064e2069ce9c359c118179501254f67d7d37ba24"
   version = "0.2"
 
+[[projects]]
+  name = "github.com/jmespath/go-jmespath"
+  packages = ["."]
+  revision = "0b12d6b5"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "0a8b79e6af54961215888f5e316e6c27000561bde010497e6233d4da6687217b"
+  inputs-digest = "16eb59818192bba639e80773dd1354d902c22cb7143de35a33a60f67730b5e2f"
   solver-name = "gps-cdcl"
   solver-version = 1

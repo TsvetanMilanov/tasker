@@ -23,7 +23,7 @@
     "common/ctypes",
     "common/cutils"
   ]
-  revision = "f6f68ba24006e8666a98ed648984583fc5581874"
+  revision = "c44137d56016b21ec0c5bd5d6cfc0945d3f8d693"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -56,6 +56,12 @@
   packages = ["."]
   revision = "ffe836d7363bc7ab3f56d2fc90ce09bfb5a0c2c5"
   version = "v9.17.0"
+
+[[projects]]
+  name = "github.com/google/uuid"
+  packages = ["."]
+  revision = "064e2069ce9c359c118179501254f67d7d37ba24"
+  version = "0.2"
 
 [solve-meta]
   analyzer-name = "dep"

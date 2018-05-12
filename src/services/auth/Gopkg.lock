@@ -22,7 +22,7 @@
     "common/cdeclarations",
     "common/ctypes"
   ]
-  revision = "f6f68ba24006e8666a98ed648984583fc5581874"
+  revision = "c44137d56016b21ec0c5bd5d6cfc0945d3f8d693"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"

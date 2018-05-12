@@ -6,6 +6,7 @@ import (
 	"github.com/TsvetanMilanov/tasker-common/common"
 	"github.com/TsvetanMilanov/tasker/src/services/tasks/data"
 	"github.com/TsvetanMilanov/tasker/src/services/tasks/handlers"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/services"
 	"github.com/TsvetanMilanov/tasker/src/services/tasks/types"
 	"github.com/aws/aws-lambda-go/lambda"
 )
@@ -19,9 +20,11 @@ func getWorkflow(bootstrap workflow.Bootstrap) *workflow.APIGatewayProxyWorkflow
 
 func main() {
 	bootstrap := common.CreateBootstrap(
-		&di.Dependency{Value: &types.CreateHandler{}},
-		&di.Dependency{Value: &data.DB{}},
-		&di.Dependency{Value: &data.DBClient{}},
+		&di.Dependency{Value: data.NewDBClient()},
+		&di.Dependency{Value: new(types.CreateHandler)},
+		&di.Dependency{Value: new(data.TasksDB)},
+		&di.Dependency{Value: new(services.TasksService)},
+		&di.Dependency{Value: new(services.TasksConfigService)},
 	)
 
 	w := getWorkflow(bootstrap)

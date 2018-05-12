@@ -54,11 +54,11 @@ resources:
         TableName: ${self:custom.config.tasksTableName}
         AttributeDefinitions: # here we need only the primary key attributes
           -
-            AttributeName: ID
+            AttributeName: TaskID
             AttributeType: S
         KeySchema:
           -
-            AttributeName: ID
+            AttributeName: TaskID
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 5

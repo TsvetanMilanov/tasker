@@ -6,22 +6,18 @@ import (
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
 	"github.com/TsvetanMilanov/tasker-common/common/cutils"
 	"github.com/TsvetanMilanov/tasker/src/services/tasks/types"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/types/requests"
 )
 
-type createTaskReq struct {
-	Name  string          `json:"name" validate:"required"`
-	Tasks []createTaskReq `json:"tasks" validate:"dive,required"`
-}
-
 // CreateHandler handles task creation.
-func CreateHandler(ctx workflow.Context, req createTaskReq) error {
+func CreateHandler(ctx workflow.Context, req requests.CreateTask) error {
 	h := new(types.CreateHandler)
 	err := ctx.GetInjector().Resolve(h)
 	if err != nil {
 		return err
 	}
 
-	taskID, err := h.DB.CreateTask(req.Name, "test")
+	taskID, err := h.Tasks.Create(req, "test")
 	if err != nil {
 		cutils.SetInternalServerError(ctx, err)
 		return nil
