@@ -31,7 +31,7 @@ define get_all_service_lambda_handlers_dirs
 $(shell \
 	service_dir=$(call get_service_dir,$1) && \
 	handlers_dirs=`ls -d $$service_dir/$(LAMBDA_HANDLERS_DIR_NAME)/*` && \
-	echo `echo $$handlers_dirs | sed "s-$$service_dir/--"` \
+	echo `echo $$handlers_dirs | sed "s-$$service_dir/--g"` \
 )
 endef
 
