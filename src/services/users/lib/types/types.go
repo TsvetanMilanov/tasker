@@ -2,8 +2,8 @@ package types
 
 import "github.com/TsvetanMilanov/tasker-common/common/cdeclarations"
 
-// InfoHandler ...
-type InfoHandler struct {
-	HTTPClient cdeclarations.IHTTPClient `di:""`
+// BaseHandler ...
+type BaseHandler struct {
 	Config     cdeclarations.IConfig     `di:""`
+	HTTPClient cdeclarations.IHTTPClient `di:""`
 }

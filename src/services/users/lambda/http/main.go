@@ -11,6 +11,7 @@ import (
 
 func getWorkflow(bootstrap workflow.Bootstrap) *workflow.APIGatewayProxyWorkflow {
 	return workflow.NewAPIGWProxyWorkflowBuilder().
+		AddGetHandler("/callback", handlers.CallbackHandler).
 		AddGetHandler("/me", handlers.InfoHandler).
 		SetBootstrap(bootstrap).
 		Build()
@@ -18,7 +19,7 @@ func getWorkflow(bootstrap workflow.Bootstrap) *workflow.APIGatewayProxyWorkflow
 
 func main() {
 	bootstrap := common.CreateBootstrap(
-		&di.Dependency{Value: &types.InfoHandler{}},
+		&di.Dependency{Value: &types.BaseHandler{}},
 	)
 
 	w := getWorkflow(bootstrap)

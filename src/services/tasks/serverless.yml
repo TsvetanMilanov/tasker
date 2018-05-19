@@ -3,6 +3,7 @@ service: ${self:provider.stage}-tasks-${self:custom.common.apiVersion}
 custom:
   common: ${file(../../../infra/scripts/sls-common.js)}
   config: ${file(../../../infra/scripts/tasks/sls-config.js)}
+  usersServiceStack: ${self:provider.stage}-users-${self:custom.common.apiVersion}-${self:provider.stage}
 
 provider:
   name: aws
@@ -36,15 +37,19 @@ functions:
     events:
       - http:
           method: GET
+          authorizer: ${cf:${self:custom.usersServiceStack}.AuthorizerLambda}
           path: tasks/{taskId}
       - http:
           method: POST
+          authorizer: ${cf:${self:custom.usersServiceStack}.AuthorizerLambda}
           path: tasks
       - http:
           method: PUT
+          authorizer: ${cf:${self:custom.usersServiceStack}.AuthorizerLambda}
           path: tasks
       - http:
           method: GET
+          authorizer: ${cf:${self:custom.usersServiceStack}.AuthorizerLambda}
           path: tasks
 
 resources:

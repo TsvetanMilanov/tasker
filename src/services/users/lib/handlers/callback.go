@@ -8,11 +8,12 @@ import (
 	"github.com/aws/aws-lambda-go/events"
 
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
-	"github.com/TsvetanMilanov/tasker-common/common"
+	"github.com/TsvetanMilanov/tasker-common/common/cutils"
+	"github.com/TsvetanMilanov/tasker/src/services/users/lib/types"
 )
 
 const (
-	redirectURI     = "https://kbv8qkx20h.execute-api.us-east-1.amazonaws.com/dev/callback"
+	redirectURI     = "https://4qxq3qd0ek.execute-api.us-east-1.amazonaws.com/dev/callback"
 	contentTypeJSON = "application/json"
 )
 
@@ -36,9 +37,12 @@ type codeGrantResponse struct {
 
 // CallbackHandler handles the oauth2 authorization code request.
 func CallbackHandler(ctx workflow.Context, req authorizationCode) error {
-	config := &common.Config{}
-	httpClient := &common.HTTPClient{}
-	auth0Cfg := config.GetAuth0Config()
+	h := new(types.BaseHandler)
+	err := ctx.GetInjector().Resolve(h)
+	if err != nil {
+		return err
+	}
+	auth0Cfg := h.Config.GetAuth0Config()
 	cgReq := codeGrantRequest{
 		Code:         req.Code,
 		ClientID:     auth0Cfg.ClientID,
@@ -48,9 +52,9 @@ func CallbackHandler(ctx workflow.Context, req authorizationCode) error {
 	}
 
 	rBodyBytes := []byte{}
-	err := httpClient.PostJSON(auth0Cfg.TokenURL, cgReq, nil, &rBodyBytes)
+	err = h.HTTPClient.PostJSON(auth0Cfg.TokenURL, cgReq, nil, &rBodyBytes)
 	if err != nil {
-		setInternalServerError(ctx, err)
+		cutils.SetInternalServerError(ctx, err)
 		return nil
 	}
 
@@ -66,15 +70,4 @@ func CallbackHandler(ctx workflow.Context, req authorizationCode) error {
 
 	ctx.SetRawResponse(res)
 	return nil
-}
-
-func setInternalServerError(ctx workflow.Context, err error) {
-	fmt.Println(err)
-	e := struct {
-		Message string `json:"message"`
-	}{Message: "Internal server error"}
-
-	ctx.
-		SetResponse(e).
-		SetResponseStatusCode(http.StatusInternalServerError)
 }

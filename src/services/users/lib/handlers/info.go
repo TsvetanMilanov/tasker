@@ -48,19 +48,19 @@ type auth0MgmtUserInfoResponse struct {
 
 // InfoHandler handles user info request.
 func InfoHandler(ctx workflow.Context, req userInfoRequest) error {
-	infoHandler := &types.InfoHandler{}
-	err := ctx.GetInjector().Resolve(infoHandler)
+	h := &types.BaseHandler{}
+	err := ctx.GetInjector().Resolve(h)
 	if err != nil {
 		return err
 	}
 
-	auth0MgmtCfg := infoHandler.Config.GetAuth0ManagementConfig()
+	auth0MgmtCfg := h.Config.GetAuth0ManagementConfig()
 
 	headers := map[string]string{
 		"Authorization": req.Authorization,
 	}
 	userInfo := auth0UserInfoResponse{}
-	err = infoHandler.HTTPClient.GetJSON(auth0MgmtCfg.UserInfoURL, headers, &userInfo)
+	err = h.HTTPClient.GetJSON(auth0MgmtCfg.UserInfoURL, headers, &userInfo)
 	if err != nil {
 		cutils.SetInternalServerError(ctx, err)
 		return nil
@@ -74,7 +74,7 @@ func InfoHandler(ctx workflow.Context, req userInfoRequest) error {
 		Audience:     auth0MgmtCfg.MgmtAPIURL,
 	}
 	machineToMachineToken := auth0MgmtMachineToMachineTokenResponse{}
-	err = infoHandler.HTTPClient.PostJSON(auth0MgmtCfg.TokenURL, body, nil, &machineToMachineToken)
+	err = h.HTTPClient.PostJSON(auth0MgmtCfg.TokenURL, body, nil, &machineToMachineToken)
 	if err != nil {
 		cutils.SetInternalServerError(ctx, err)
 		return nil
@@ -86,7 +86,7 @@ func InfoHandler(ctx workflow.Context, req userInfoRequest) error {
 		"Authorization": fmt.Sprintf("Bearer %s", machineToMachineToken.AccessToken),
 	}
 
-	err = infoHandler.HTTPClient.GetJSON(mgmtUserInfoURL, headers, &mgmtUserInfo)
+	err = h.HTTPClient.GetJSON(mgmtUserInfoURL, headers, &mgmtUserInfo)
 	if err != nil {
 		cutils.SetInternalServerError(ctx, err)
 		return nil

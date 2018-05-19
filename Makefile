@@ -48,6 +48,7 @@ endef
 	remove/% \
 	vendor-update \
 	vendor-update/% \
+	tail-logs/% \
 	clean
 
 .SECONDEXPANSION:
@@ -61,7 +62,7 @@ $(BUILD_DIR)/vendor-%: $$(call get_service_dir,%)/Gopkg.toml $$(call get_service
 .SECONDEXPANSION:
 $(BUILD_DIR)/build-%: $$(call find_recursive,$(SERVICES_DIR)/%,*.go) $$(BUILD_DIR)/vendor-%
 	$(call print,Building service $*...)
-	@for d in $(call get_all_service_lambda_handlers_dirs,$*); \
+	@ set -e pipefail && for d in $(call get_all_service_lambda_handlers_dirs,$*); \
 	do \
 		GOOS=linux go build -ldflags="-s -w" \
 		-o $(CURDIR)/$(call get_service_dir,$*)/$$d/bin/main \
@@ -107,6 +108,9 @@ vendor-update/%:
 
 vendor-update: $(patsubst %,vendor-update/%,$(DISCOVERED_SERVICES))
 	$(call print,All vendors successfully updated)
+
+tail-logs/%:
+	(cd src/services/$*/ && sls logs -tail -f $(f) --stage dev)
 
 clean:
 	rm -rf $(BUILD_DIR)/*

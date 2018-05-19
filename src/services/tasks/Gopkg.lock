@@ -5,7 +5,7 @@
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
   packages = ["workflow"]
-  revision = "9db175d4d541332fac14505b6784ee7eb52ae5cd"
+  revision = "930e12d4275688b5bd30445b30c905de99df3f08"
 
 [[projects]]
   name = "github.com/TsvetanMilanov/go-simple-di"
@@ -68,8 +68,8 @@
     "service/dynamodb/dynamodbattribute",
     "service/sts"
   ]
-  revision = "31a85efbe3bc741eb539d6310c8e66030b7c5cb7"
-  version = "v1.13.47"
+  revision = "5f796043d63bfddca929cfbcffce01e5a894aad5"
+  version = "v1.13.52"
 
 [[projects]]
   name = "github.com/go-ini/ini"
@@ -95,8 +95,8 @@
 [[projects]]
   name = "github.com/go-playground/validator"
   packages = ["."]
-  revision = "ffe836d7363bc7ab3f56d2fc90ce09bfb5a0c2c5"
-  version = "v9.17.0"
+  revision = "f28cb45dc0f0f406ba2015cdb59a5203ad220bc2"
+  version = "v9.17.1"
 
 [[projects]]
   name = "github.com/google/uuid"

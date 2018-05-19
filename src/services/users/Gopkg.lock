@@ -5,13 +5,22 @@
   branch = "master"
   name = "github.com/TsvetanMilanov/go-lambda-workflow"
   packages = ["workflow"]
-  revision = "9db175d4d541332fac14505b6784ee7eb52ae5cd"
+  revision = "930e12d4275688b5bd30445b30c905de99df3f08"
 
 [[projects]]
   name = "github.com/TsvetanMilanov/go-simple-di"
   packages = ["di"]
   revision = "d958830d3aefff7b33f687a9e43bef36f3df1cf1"
   version = "v0.1.0"
+
+[[projects]]
+  branch = "master"
+  name = "github.com/TsvetanMilanov/tasker"
+  packages = [
+    "src/services/auth/lib/handlers",
+    "src/services/auth/lib/types"
+  ]
+  revision = "835467c94ae0201559abeffb027d30086fcb8557"
 
 [[projects]]
   branch = "master"
@@ -54,8 +63,8 @@
 [[projects]]
   name = "github.com/go-playground/validator"
   packages = ["."]
-  revision = "ffe836d7363bc7ab3f56d2fc90ce09bfb5a0c2c5"
-  version = "v9.17.0"
+  revision = "f28cb45dc0f0f406ba2015cdb59a5203ad220bc2"
+  version = "v9.17.1"
 
 [[projects]]
   name = "github.com/google/uuid"
@@ -66,6 +75,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "8c84cd557ca439b9acc13d61688df2a3b2edb186e9470a1be0e1545aba1a133f"
+  inputs-digest = "97c233db7fd740c5759a965e17db4a94fe0dc26028489aa682a9d62259d0bd6f"
   solver-name = "gps-cdcl"
   solver-version = 1

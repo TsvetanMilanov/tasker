@@ -2,6 +2,8 @@ service: ${self:provider.stage}-users-${self:custom.common.apiVersion}
 
 custom:
   common: ${file(../../../infra/scripts/sls-common.js)}
+  self: ${self:}
+  exportSuffix: ${self:custom.self.service}-export
 
 provider:
   name: aws
@@ -24,3 +26,29 @@ functions:
       - http:
           method: GET
           path: /me
+  auth:
+    handler: lambda/http/bin/main
+    package:
+        include:
+          - lambda/http/bin/main
+    environment: ${self:custom.common.env}
+    events:
+      - http:
+          method: GET
+          path: callback
+  authorizer:
+    handler: lambda/authorizer/bin/main
+    package:
+        include:
+          - lambda/authorizer/bin/main
+    environment: ${self:custom.common.env}
+
+resources:
+  Outputs:
+    AuthorizerLambda:
+      Value:
+        Fn::GetAtt:
+          - AuthorizerLambdaFunction
+          - Arn
+      Export:
+        Name: AuthorizerLambda-${self:custom.exportSuffix}
