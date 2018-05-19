@@ -4,8 +4,8 @@ import (
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
 	"github.com/TsvetanMilanov/go-simple-di/di"
 	"github.com/TsvetanMilanov/tasker-common/common"
-	"github.com/TsvetanMilanov/tasker/src/services/users/handlers"
-	"github.com/TsvetanMilanov/tasker/src/services/users/types"
+	"github.com/TsvetanMilanov/tasker/src/services/users/lib/handlers"
+	"github.com/TsvetanMilanov/tasker/src/services/users/lib/types"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 

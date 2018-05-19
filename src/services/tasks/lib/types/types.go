@@ -1,6 +1,6 @@
 package types
 
-import "github.com/TsvetanMilanov/tasker/src/services/tasks/declarations"
+import "github.com/TsvetanMilanov/tasker/src/services/tasks/lib/declarations"
 
 // CreateHandler ...
 type CreateHandler struct {

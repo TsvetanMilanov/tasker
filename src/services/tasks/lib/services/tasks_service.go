@@ -1,11 +1,11 @@
 package services
 
 import (
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/declarations"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/declarations"
 
 	"github.com/TsvetanMilanov/tasker-common/common/cutils"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/data/models"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/types/requests"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/data/models"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/types/requests"
 )
 
 // TasksService implements ITasksService.

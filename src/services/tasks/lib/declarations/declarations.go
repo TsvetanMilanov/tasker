@@ -1,9 +1,9 @@
 package declarations
 
 import (
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/data/models"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/types/config"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/types/requests"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/data/models"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/types/config"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/types/requests"
 	"github.com/aws/aws-sdk-go/aws"
 )
 

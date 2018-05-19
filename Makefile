@@ -1,14 +1,15 @@
-SHELL               := /bin/bash
-BUILD_DIR           := .build
-STAGE               ?= dev
-ENV_FILE_NAME       := $(STAGE)-env.list
-SERVICES_DIR        := src/services
-DISCOVERED_SERVICES := $(shell ls $(SERVICES_DIR))
+SHELL                    := /bin/bash
+BUILD_DIR                := .build
+STAGE                    ?= dev
+ENV_FILE_NAME            := $(STAGE)-env.list
+SERVICES_DIR             := src/services
+LAMBDA_HANDLERS_DIR_NAME := lambda
+DISCOVERED_SERVICES      := $(shell ls $(SERVICES_DIR))
 
-GO_NAMESPACE        := github.com/TsvetanMilanov/tasker
+GO_NAMESPACE             := github.com/TsvetanMilanov/tasker
 
-GREEN               := \e[32m
-NC                  := \e[0m
+GREEN                    := \e[32m
+NC                       := \e[0m
 
 define find_recursive
 $(shell find $1 -iname "$2")
@@ -24,6 +25,14 @@ endef
 
 define get_service_go_package
 $(shell echo $(GO_NAMESPACE)/$(SERVICES_DIR)/$1)
+endef
+
+define get_all_service_lambda_handlers_dirs
+$(shell \
+	service_dir=$(call get_service_dir,$1) && \
+	handlers_dirs=`ls -d $$service_dir/$(LAMBDA_HANDLERS_DIR_NAME)/*` && \
+	echo `echo $$handlers_dirs | sed "s-$$service_dir/--"` \
+)
 endef
 
 .PRECIOUS: \
@@ -52,9 +61,12 @@ $(BUILD_DIR)/vendor-%: $$(call get_service_dir,%)/Gopkg.toml $$(call get_service
 .SECONDEXPANSION:
 $(BUILD_DIR)/build-%: $$(call find_recursive,$(SERVICES_DIR)/%,*.go) $$(BUILD_DIR)/vendor-%
 	$(call print,Building service $*...)
-	GOOS=linux go build -ldflags="-s -w" \
-		-o $(CURDIR)/$(call get_service_dir,$*)/bin/$* \
-		$(call get_service_go_package,$*)
+	@for d in $(call get_all_service_lambda_handlers_dirs,$*); \
+	do \
+		GOOS=linux go build -ldflags="-s -w" \
+		-o $(CURDIR)/$(call get_service_dir,$*)/$$d/bin/main \
+		$(call get_service_go_package,$*)/$$d; \
+	done
 	@touch $@
 
 .SECONDEXPANSION:

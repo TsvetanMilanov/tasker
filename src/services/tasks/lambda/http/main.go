@@ -4,10 +4,10 @@ import (
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
 	"github.com/TsvetanMilanov/go-simple-di/di"
 	"github.com/TsvetanMilanov/tasker-common/common"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/data"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/handlers"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/services"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/types"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/data"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/handlers"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/services"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/types"
 	"github.com/aws/aws-lambda-go/lambda"
 )
 

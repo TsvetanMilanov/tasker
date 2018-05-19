@@ -21,14 +21,16 @@ provider:
       Resource: arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${self:custom.config.tasksTableName}
 
 package:
- exclude:
-   - ./**
- include:
-   - ./bin/**
+  individually: true
+  exclude:
+    - "*/**"
 
 functions:
   tasks:
-    handler: bin/tasks
+    handler: lambda/http/bin/main
+    package:
+        include:
+          - lambda/http/bin/main
     environment:
       TASKS_TABLE_NAME: ${self:custom.config.tasksTableName}
     events:

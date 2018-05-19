@@ -3,7 +3,7 @@ package services
 import (
 	"os"
 
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/types/config"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/types/config"
 )
 
 // TasksConfigService implements ITasksConfigService

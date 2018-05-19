@@ -1,8 +1,8 @@
 package data
 
 import (
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/data/models"
-	"github.com/TsvetanMilanov/tasker/src/services/tasks/declarations"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/data/models"
+	"github.com/TsvetanMilanov/tasker/src/services/tasks/lib/declarations"
 	"github.com/aws/aws-sdk-go/aws"
 )
 

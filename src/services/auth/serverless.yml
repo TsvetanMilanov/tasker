@@ -9,14 +9,16 @@ provider:
   runtime: go1.x
 
 package:
- exclude:
-   - ./**
- include:
-   - ./bin/**
+  individually: true
+  exclude:
+    - "*/**"
 
 functions:
   auth:
-    handler: bin/auth
+    handler: lambda/http/bin/main
+    package:
+        include:
+          - lambda/http/bin/main
     environment: ${self:custom.common.env}
     events:
       - http:
