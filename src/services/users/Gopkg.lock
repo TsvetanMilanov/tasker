@@ -15,15 +15,6 @@
 
 [[projects]]
   branch = "master"
-  name = "github.com/TsvetanMilanov/tasker"
-  packages = [
-    "src/services/auth/lib/handlers",
-    "src/services/auth/lib/types"
-  ]
-  revision = "835467c94ae0201559abeffb027d30086fcb8557"
-
-[[projects]]
-  branch = "master"
   name = "github.com/TsvetanMilanov/tasker-common"
   packages = [
     "common",
@@ -32,7 +23,7 @@
     "common/ctypes",
     "common/cutils"
   ]
-  revision = "c44137d56016b21ec0c5bd5d6cfc0945d3f8d693"
+  revision = "a20475a48ce8b9f513b9af1e7451f7b49ec5c01a"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -75,6 +66,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "97c233db7fd740c5759a965e17db4a94fe0dc26028489aa682a9d62259d0bd6f"
+  inputs-digest = "4db273ee5dfb6523cdc3916ce85fc03ac802dfd8714afd095ca8c53417ab16bd"
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -22,7 +22,7 @@
     "common/ctypes",
     "common/cutils"
   ]
-  revision = "c44137d56016b21ec0c5bd5d6cfc0945d3f8d693"
+  revision = "a20475a48ce8b9f513b9af1e7451f7b49ec5c01a"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
