@@ -23,7 +23,7 @@
     "common/ctypes",
     "common/cutils"
   ]
-  revision = "a20475a48ce8b9f513b9af1e7451f7b49ec5c01a"
+  revision = "87853f82915f80d1ea30a5c66c4ef6cb0fe9b074"
 
 [[projects]]
   name = "github.com/aws/aws-lambda-go"
@@ -66,6 +66,6 @@
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
-  inputs-digest = "4db273ee5dfb6523cdc3916ce85fc03ac802dfd8714afd095ca8c53417ab16bd"
+  inputs-digest = "fafe4e40ba42966c2bf31d90dd6f3ee8c445d1877cd20c9e2521d5aece25d08e"
   solver-name = "gps-cdcl"
   solver-version = 1

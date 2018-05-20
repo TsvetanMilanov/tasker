@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/TsvetanMilanov/tasker-common/common/cdeclarations"
+	"github.com/TsvetanMilanov/tasker-common/common/ctypes"
 	"github.com/TsvetanMilanov/tasker/src/services/users/lib/declarations"
 	"github.com/TsvetanMilanov/tasker/src/services/users/lib/types"
 )
@@ -18,7 +19,7 @@ type UsersService struct {
 // GetUserInfoFromToken returns the full user info from the provided
 // Authorization header value.
 func (s *UsersService) GetUserInfoFromToken(authorizationHeader string) (*types.Auth0MgmtUserInfoResponse, error) {
-	userInfo, err := s.getBasicUserInfoFromToken(authorizationHeader)
+	userInfo, err := s.GetBasicUserInfoFromToken(authorizationHeader)
 	if err != nil {
 		return nil, err
 	}
@@ -41,22 +42,17 @@ func (s *UsersService) GetUserInfoFromToken(authorizationHeader string) (*types.
 	return mgmtUserInfo, nil
 }
 
-func (s *UsersService) getBasicUserInfoFromToken(authorizationHeader string) (*auth0UserInfoResponse, error) {
+// GetBasicUserInfoFromToken returns the basic user info from the provided token.
+func (s *UsersService) GetBasicUserInfoFromToken(authorizationHeader string) (*ctypes.Auth0UserInfoResponse, error) {
 	auth0MgmtCfg := s.Config.GetAuth0ManagementConfig()
 	headers := map[string]string{
 		"Authorization": authorizationHeader,
 	}
-	userInfo := new(auth0UserInfoResponse)
+	userInfo := new(ctypes.Auth0UserInfoResponse)
 	err := s.HTTPClient.GetJSON(auth0MgmtCfg.UserInfoURL, headers, userInfo)
 	if err != nil {
 		return nil, err
 	}
 
 	return userInfo, nil
-}
-
-type auth0UserInfoResponse struct {
-	Sub           string `json:"sub"`
-	Email         string `json:"email"`
-	EmailVerified bool   `json:"email_verified"`
 }

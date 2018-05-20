@@ -54,8 +54,7 @@ func CallbackHandler(ctx workflow.Context, req authorizationCode) error {
 	rBodyBytes := []byte{}
 	err = h.HTTPClient.PostJSON(auth0Cfg.TokenURL, cgReq, nil, &rBodyBytes)
 	if err != nil {
-		cutils.SetInternalServerError(ctx, err)
-		return nil
+		return cutils.SetInternalServerError(ctx, err)
 	}
 
 	encRes := base64.StdEncoding.EncodeToString(rBodyBytes)

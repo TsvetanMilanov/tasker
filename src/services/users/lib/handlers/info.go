@@ -23,8 +23,7 @@ func InfoHandler(ctx workflow.Context, req userInfoRequest) error {
 
 	mgmtUserInfo, err := (*usersService).GetUserInfoFromToken(req.Authorization)
 	if err != nil {
-		cutils.SetInternalServerError(ctx, err)
-		return nil
+		return cutils.SetInternalServerError(ctx, err)
 	}
 
 	ctx.SetResponse(mgmtUserInfo).SetResponseStatusCode(http.StatusOK)
