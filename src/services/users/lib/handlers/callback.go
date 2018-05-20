@@ -10,11 +10,7 @@ import (
 	"github.com/TsvetanMilanov/go-lambda-workflow/workflow"
 	"github.com/TsvetanMilanov/tasker-common/common/cutils"
 	"github.com/TsvetanMilanov/tasker/src/services/users/lib/types"
-)
-
-const (
-	redirectURI     = "https://4qxq3qd0ek.execute-api.us-east-1.amazonaws.com/dev/callback"
-	contentTypeJSON = "application/json"
+	"github.com/TsvetanMilanov/tasker/src/services/users/lib/utils"
 )
 
 type authorizationCode struct {
@@ -29,18 +25,17 @@ type codeGrantRequest struct {
 	ClientSecret string `json:"client_secret"`
 }
 
-type codeGrantResponse struct {
-	AccessToken string `json:"access_token"`
-	ExpiresIn   int64  `json:"expires_in"`
-	TokenType   string `json:"token_type"`
-}
-
 // CallbackHandler handles the oauth2 authorization code request.
 func CallbackHandler(ctx workflow.Context, req authorizationCode) error {
 	h := new(types.BaseHandler)
 	err := ctx.GetInjector().Resolve(h)
 	if err != nil {
 		return err
+	}
+
+	redirectURI, err := utils.GetServiceURLFromEvent(ctx)
+	if err != nil {
+		return cutils.SetInternalServerError(ctx, err)
 	}
 	auth0Cfg := h.Config.GetAuth0Config()
 	cgReq := codeGrantRequest{
